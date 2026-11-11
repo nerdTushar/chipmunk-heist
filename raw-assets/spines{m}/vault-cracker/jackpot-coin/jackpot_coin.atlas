@@ -1,0 +1,104 @@
+
+jackpot_coin.png
+size: 1283, 489
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+coin
+  rotate: false
+  xy: 472, 7
+  size: 216, 216
+  orig: 216, 216
+  offset: 0, 0
+  index: -1
+coin_glow
+  rotate: false
+  xy: 852, 21
+  size: 149, 150
+  orig: 157, 158
+  offset: 4, 4
+  index: -1
+dim_coin
+  rotate: false
+  xy: 1003, 63
+  size: 108, 108
+  orig: 108, 108
+  offset: 0, 0
+  index: -1
+dim_fruit
+  rotate: false
+  xy: 740, 308
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+dim_nut
+  rotate: false
+  xy: 875, 308
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+gold
+  rotate: false
+  xy: 1010, 308
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+grand
+  rotate: false
+  xy: 1145, 308
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+major
+  rotate: true
+  xy: 740, 173
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+mini
+  rotate: true
+  xy: 921, 173
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+minor
+  rotate: true
+  xy: 1102, 173
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+rays
+  rotate: false
+  xy: 472, 225
+  size: 266, 262
+  orig: 266, 263
+  offset: 0, 0
+  index: -1
+rays_2
+  rotate: false
+  xy: 2, 4
+  size: 468, 483
+  orig: 515, 515
+  offset: 16, 17
+  index: -1
+sparkle
+  rotate: false
+  xy: 690, 21
+  size: 160, 150
+  orig: 163, 150
+  offset: 3, 0
+  index: -1
+sparkle1
+  rotate: true
+  xy: 1003, 2
+  size: 59, 54
+  orig: 59, 59
+  offset: 0, 3
+  index: -1

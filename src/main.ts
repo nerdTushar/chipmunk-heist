@@ -1,4 +1,5 @@
-import { Application, Assets, Sprite } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
+import { initAssets, loadBundle } from "./assets";
 
 (async () => {
   // Create a new application
@@ -10,11 +11,10 @@ import { Application, Assets, Sprite } from "pixi.js";
   // Append the application canvas to the document body
   document.getElementById("pixi-container")!.appendChild(app.canvas);
 
-  // Load the bunny texture
-  const texture = await Assets.load("/assets/bunny.png");
+  await initAssets();
+  await loadBundle("preload");
 
-  // Create a bunny Sprite
-  const bunny = new Sprite(texture);
+  const bunny = Sprite.from("bunny");
 
   // Center the sprite's anchor point
   bunny.anchor.set(0.5);

@@ -1,0 +1,202 @@
+
+locker_safe.png
+size: 458, 1030
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+bolt_1
+  rotate: true
+  xy: 183, 354
+  size: 27, 30
+  orig: 31, 34
+  offset: 2, 2
+  index: -1
+bolt_1_shadow
+  rotate: false
+  xy: 267, 838
+  size: 19, 55
+  orig: 23, 60
+  offset: 2, 3
+  index: -1
+bolt_2
+  rotate: true
+  xy: 183, 325
+  size: 27, 29
+  orig: 31, 33
+  offset: 2, 2
+  index: -1
+bolt_2_shadow
+  rotate: false
+  xy: 246, 826
+  size: 19, 72
+  orig: 23, 80
+  offset: 2, 6
+  index: -1
+bolt_3
+  rotate: true
+  xy: 183, 296
+  size: 27, 29
+  orig: 31, 33
+  offset: 2, 2
+  index: -1
+bolt_3_shadow
+  rotate: true
+  xy: 383, 874
+  size: 19, 72
+  orig: 23, 80
+  offset: 2, 6
+  index: -1
+close_door
+  rotate: true
+  xy: 246, 630
+  size: 194, 205
+  orig: 194, 205
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 227, 412
+  size: 216, 216
+  orig: 216, 216
+  offset: 0, 0
+  index: -1
+door
+  rotate: true
+  xy: 2, 900
+  size: 96, 264
+  orig: 96, 264
+  offset: 0, 0
+  index: -1
+door_shadow
+  rotate: true
+  xy: 2, 620
+  size: 35, 223
+  orig: 39, 228
+  offset: 2, 2
+  index: -1
+empty_box
+  rotate: true
+  xy: 2, 657
+  size: 241, 242
+  orig: 245, 246
+  offset: 2, 2
+  index: -1
+glow
+  rotate: true
+  xy: 2, 424
+  size: 194, 195
+  orig: 200, 200
+  offset: 3, 3
+  index: -1
+gold
+  rotate: true
+  xy: 271, 895
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+grand
+  rotate: true
+  xy: 2, 289
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+handle's_drop_shadow
+  rotate: true
+  xy: 313, 7
+  size: 87, 72
+  orig: 91, 76
+  offset: 2, 2
+  index: -1
+handle_bar
+  rotate: true
+  xy: 387, 8
+  size: 86, 69
+  orig: 90, 73
+  offset: 2, 2
+  index: -1
+handle_bar_shadow
+  rotate: false
+  xy: 383, 828
+  size: 51, 44
+  orig: 55, 48
+  offset: 2, 2
+  index: -1
+handle_base
+  rotate: false
+  xy: 330, 842
+  size: 51, 51
+  orig: 55, 55
+  offset: 2, 2
+  index: -1
+hinge_1
+  rotate: false
+  xy: 288, 839
+  size: 19, 54
+  orig: 23, 58
+  offset: 2, 2
+  index: -1
+hinge_2
+  rotate: false
+  xy: 309, 839
+  size: 19, 54
+  orig: 23, 58
+  offset: 2, 2
+  index: -1
+keyhole
+  rotate: true
+  xy: 183, 383
+  size: 39, 42
+  orig: 43, 46
+  offset: 2, 2
+  index: -1
+major
+  rotate: true
+  xy: 227, 277
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+mini
+  rotate: true
+  xy: 2, 154
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+minor
+  rotate: false
+  xy: 313, 96
+  size: 133, 179
+  orig: 133, 180
+  offset: 0, 0
+  index: -1
+open_door_deapth
+  rotate: true
+  xy: 2, 998
+  size: 30, 267
+  orig: 30, 267
+  offset: 0, 0
+  index: -1
+sparkle
+  rotate: false
+  xy: 2, 2
+  size: 160, 150
+  orig: 163, 150
+  offset: 3, 0
+  index: -1
+star_soft
+  rotate: false
+  xy: 183, 165
+  size: 110, 110
+  orig: 128, 128
+  offset: 9, 9
+  index: -1
+valut_glow
+  rotate: false
+  xy: 164, 5
+  size: 147, 147
+  orig: 147, 147
+  offset: 0, 0
+  index: -1

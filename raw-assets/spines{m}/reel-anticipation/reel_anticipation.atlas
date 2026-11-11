@@ -1,0 +1,27 @@
+
+reel_anticipation.png
+size: 746, 286
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+frame_glow_1
+  rotate: true
+  xy: 2, 67
+  size: 91, 474
+  orig: 91, 474
+  offset: 0, 0
+  index: -1
+glow_1
+  rotate: true
+  xy: 2, 160
+  size: 124, 729
+  orig: 124, 729
+  offset: 0, 0
+  index: -1
+shine
+  rotate: false
+  xy: 478, 2
+  size: 266, 156
+  orig: 266, 156
+  offset: 0, 0
+  index: -1

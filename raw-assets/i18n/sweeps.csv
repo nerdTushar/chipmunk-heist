@@ -1,0 +1,50 @@
+id,#context,en
+a11y.ante.open,,Ante play
+a11y.ante.openActive,,"Get bonus: {ante} ante on, {cost} per spin, press to turn off"
+a11y.autoplayDrawer.lossLimit,,Stop after losing {multiplier} times the play amount
+a11y.autoplayDrawer.singleWinLimit,,Stop after a single win of {multiplier} times the play amount
+a11y.betPanel.decreaseStake,,Decrease play amount
+a11y.betPanel.increaseStake,,Increase play amount
+a11y.betPanel.stake.label,,Play amount
+a11y.buyBonus.buy,,Get feature
+a11y.menu.paytable,,Wintable
+a11y.region.controls,,Play controls
+a11y.stakeDrawer.stake,,Play amount {amount}
+compliance.autoplayStopped.insufficientFunds,,"Your balance does not cover the next play, so autoplay stopped."
+compliance.blocked.wagerLimitReached,,You have reached your play limit.
+paytable.freeSpins.intro,,{guards} Security Guards in one base spin award {spins} free spins at the triggering play.
+paytable.freeSpins.scatter.body,,"Keeps appearing during the feature but wins nothing there. Land {count} or more on one spin to win +{extra} extra spins, to a maximum of {max}."
+paytable.info.baseBetMultiple,,x{count} BASE PLAY
+paytable.info.maximumBet,,MAXIMUM PLAY
+paytable.info.minimumBet,,MINIMUM PLAY
+paytable.mode.baseGame.description,,A standard spin at your play amount.
+paytable.paylines.intro,,"Wins land on {lines} fixed winlines, left to right."
+paytable.paylines.label,,Winline {number}
+paytable.reason.scatter,,{count}+ ANYWHERE = WINS + FREE SPINS
+paytable.section.betModes,,PLAY MODES
+paytable.section.paylines,,WINLINES
+paytable.special.scatter.body,,{counts} anywhere in one base spin win {pays} the total play and trigger Free Spins. It joins no line and no wild substitutes for it.
+paytable.special.vent.body,,"Lands in the base game and wins nothing on a line. {count} or more in one spin trigger Vault Feature."
+paytable.vaultCracker.bossScore.body,,"Boss Score: If all {cells} cells end the feature holding Gold Coins and no Jackpot Coins, the maximum win of {multiple}× the total play is awarded instead of the coin total."
+paytable.vaultCracker.goldCoin.body,,Shows {values} the total play. Each Vent that opens the vault becomes one.
+paytable.vaultCracker.intro,,"3 or more Vents open the vault with {lives} lives. Locked coins stay while every empty cell re-spins: a new coin or safe resets the lives to {lives}, and a spin with no new coin uses one up. The feature ends when the lives run out or all {cells} cells are full, then every Gold Coin and jackpot won is added to the total win."
+paytable.vaultCracker.jackpot.body,,"Two {name} coins win {multiple}× the total play, as often as a pair lands. A lone coin wins nothing."
+replay.badge,,Play replay
+replay.figure.baseBet,,Base play
+replay.figure.totalBet,,Total play
+replay.footnote,,This is a recorded round. No play is made and no balance changes.
+round.refused.insufficientFunds.body,,Your balance does not cover this play. Lower the play amount to keep playing.
+round.refused.limitExceeded.body,,This play would go over a limit set on your account.
+round.refused.paused.body,,New plays are paused for maintenance. Try again in a moment.
+rules.button.info.description,,Opens the wintable and feature information screen.
+rules.button.minus.description,,Decreases the total play amount.
+rules.button.plus.description,,Increases the total play amount.
+rules.button.spin.description,,Starts a round using the current play amount. Press again to quick-stop the spin.
+ui.autoplayDrawer.subtitle,,SELECT YOUR PLAYS
+ui.betPanel.bet,,PLAY {amount}
+ui.betPanel.caption.bet,,PLAY
+ui.buyBonus.action.buy,,PLAY
+ui.buyBonus.cta,,GET FEATURE
+ui.menu.paytable,,WINTABLE
+ui.paytable.noPay,,NO WIN
+ui.stakeDrawer.title,,PLAY

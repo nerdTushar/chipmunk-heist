@@ -1,0 +1,135 @@
+{
+"skeleton": {
+	"hash": "MocV5z7JWVo",
+	"spine": "4.1.24",
+	"x": -138,
+	"y": -148,
+	"width": 276,
+	"height": 296,
+	"images": "../anticipation_red_blue_beam/anticipation_rb_spine/images/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "anticipation", "parent": "root" }
+],
+"slots": [
+	{ "name": "anticipation", "bone": "anticipation", "attachment": "anticipation/anticipation_rb_00" },
+	{ "name": "anticipation2", "bone": "anticipation", "color": "ffffff89", "attachment": "anticipation/anticipation_rb_00", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"anticipation": {
+				"anticipation/anticipation_rb_00": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_01": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_02": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_03": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_04": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_05": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_06": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_07": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_08": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_09": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_10": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_11": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_12": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_13": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_14": { "width": 276, "height": 296 }
+			},
+			"anticipation2": {
+				"anticipation/anticipation_rb_00": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_01": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_02": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_03": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_04": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_05": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_06": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_07": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_08": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_09": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_10": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_11": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_12": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_13": { "width": 276, "height": 296 },
+				"anticipation/anticipation_rb_14": { "width": 276, "height": 296 }
+			}
+		}
+	}
+],
+"animations": {
+	"loop": {
+		"slots": {
+			"anticipation": {
+				"attachment": [
+					{ "time": 0.0333, "name": "anticipation/anticipation_rb_01" },
+					{ "time": 0.0667, "name": "anticipation/anticipation_rb_02" },
+					{ "time": 0.1, "name": "anticipation/anticipation_rb_03" },
+					{ "time": 0.1333, "name": "anticipation/anticipation_rb_04" },
+					{ "time": 0.1667, "name": "anticipation/anticipation_rb_05" },
+					{ "time": 0.2, "name": "anticipation/anticipation_rb_06" },
+					{ "time": 0.2333, "name": "anticipation/anticipation_rb_07" },
+					{ "time": 0.2667, "name": "anticipation/anticipation_rb_08" },
+					{ "time": 0.3, "name": "anticipation/anticipation_rb_09" },
+					{ "time": 0.3333, "name": "anticipation/anticipation_rb_10" },
+					{ "time": 0.3667, "name": "anticipation/anticipation_rb_11" },
+					{ "time": 0.4, "name": "anticipation/anticipation_rb_12" },
+					{ "time": 0.4333, "name": "anticipation/anticipation_rb_13" },
+					{ "time": 0.4667, "name": "anticipation/anticipation_rb_14" },
+					{ "time": 0.5, "name": "anticipation/anticipation_rb_00" },
+					{ "time": 0.5333, "name": "anticipation/anticipation_rb_01" },
+					{ "time": 0.5667, "name": "anticipation/anticipation_rb_02" },
+					{ "time": 0.6, "name": "anticipation/anticipation_rb_03" },
+					{ "time": 0.6333, "name": "anticipation/anticipation_rb_04" },
+					{ "time": 0.6667, "name": "anticipation/anticipation_rb_05" },
+					{ "time": 0.7, "name": "anticipation/anticipation_rb_06" },
+					{ "time": 0.7333, "name": "anticipation/anticipation_rb_07" },
+					{ "time": 0.7667, "name": "anticipation/anticipation_rb_08" },
+					{ "time": 0.8, "name": "anticipation/anticipation_rb_09" },
+					{ "time": 0.8333, "name": "anticipation/anticipation_rb_10" },
+					{ "time": 0.8667, "name": "anticipation/anticipation_rb_11" },
+					{ "time": 0.9, "name": "anticipation/anticipation_rb_12" },
+					{ "time": 0.9333, "name": "anticipation/anticipation_rb_13" },
+					{ "time": 0.9667, "name": "anticipation/anticipation_rb_14" },
+					{ "time": 1, "name": "anticipation/anticipation_rb_00" }
+				]
+			},
+			"anticipation2": {
+				"attachment": [
+					{ "time": 0.0333, "name": "anticipation/anticipation_rb_01" },
+					{ "time": 0.0667, "name": "anticipation/anticipation_rb_02" },
+					{ "time": 0.1, "name": "anticipation/anticipation_rb_03" },
+					{ "time": 0.1333, "name": "anticipation/anticipation_rb_04" },
+					{ "time": 0.1667, "name": "anticipation/anticipation_rb_05" },
+					{ "time": 0.2, "name": "anticipation/anticipation_rb_06" },
+					{ "time": 0.2333, "name": "anticipation/anticipation_rb_07" },
+					{ "time": 0.2667, "name": "anticipation/anticipation_rb_08" },
+					{ "time": 0.3, "name": "anticipation/anticipation_rb_09" },
+					{ "time": 0.3333, "name": "anticipation/anticipation_rb_10" },
+					{ "time": 0.3667, "name": "anticipation/anticipation_rb_11" },
+					{ "time": 0.4, "name": "anticipation/anticipation_rb_12" },
+					{ "time": 0.4333, "name": "anticipation/anticipation_rb_13" },
+					{ "time": 0.4667, "name": "anticipation/anticipation_rb_14" },
+					{ "time": 0.5, "name": "anticipation/anticipation_rb_00" },
+					{ "time": 0.5333, "name": "anticipation/anticipation_rb_01" },
+					{ "time": 0.5667, "name": "anticipation/anticipation_rb_02" },
+					{ "time": 0.6, "name": "anticipation/anticipation_rb_03" },
+					{ "time": 0.6333, "name": "anticipation/anticipation_rb_04" },
+					{ "time": 0.6667, "name": "anticipation/anticipation_rb_05" },
+					{ "time": 0.7, "name": "anticipation/anticipation_rb_06" },
+					{ "time": 0.7333, "name": "anticipation/anticipation_rb_07" },
+					{ "time": 0.7667, "name": "anticipation/anticipation_rb_08" },
+					{ "time": 0.8, "name": "anticipation/anticipation_rb_09" },
+					{ "time": 0.8333, "name": "anticipation/anticipation_rb_10" },
+					{ "time": 0.8667, "name": "anticipation/anticipation_rb_11" },
+					{ "time": 0.9, "name": "anticipation/anticipation_rb_12" },
+					{ "time": 0.9333, "name": "anticipation/anticipation_rb_13" },
+					{ "time": 0.9667, "name": "anticipation/anticipation_rb_14" },
+					{ "time": 1, "name": "anticipation/anticipation_rb_00" }
+				]
+			}
+		}
+	}
+}
+}

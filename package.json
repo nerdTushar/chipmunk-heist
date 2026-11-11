@@ -5,15 +5,21 @@
   "type": "module",
   "scripts": {
     "start": "npm run dev",
-    "build": "npm run lint && tsc && vite build",
+    "assets": "assetpack",
+    "assets:watch": "assetpack --watch",
+    "dev": "concurrently \"assetpack --watch\" \"vite\"",
+    "build": "npm run lint && tsc && assetpack && vite build",
     "lint": "eslint .",
-    "dev": "vite"
+    "cache:clear": "node -e \"import('node:fs').then(fs=>['.assetpack','public/assets'].forEach(p=>fs.rmSync(p,{recursive:true,force:true})))\"",
+    "cache:clear:ps": "powershell -Command \"Remove-Item -Recurse -Force .assetpack, public/assets\""
   },
   "dependencies": {
     "pixi.js": "^8.8.1"
   },
   "devDependencies": {
+    "@assetpack/core": "1.7.0",
     "@eslint/js": "^9.21.0",
+    "concurrently": "^10.0.7",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",

@@ -1,0 +1,157 @@
+vault_transition.png
+size: 1060, 1839
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+bonusgame_door_base
+  rotate: true
+  xy: 729, 335
+  size: 321, 327
+  orig: 321, 327
+  offset: 0, 0
+  index: -1
+door_01
+  rotate: false
+  xy: 729, 1156
+  size: 181, 294
+  orig: 181, 294
+  offset: 0, 0
+  index: -1
+door_02
+  rotate: true
+  xy: 772, 932
+  size: 222, 284
+  orig: 222, 284
+  offset: 0, 0
+  index: -1
+door_03
+  rotate: true
+  xy: 772, 658
+  size: 272, 278
+  orig: 272, 278
+  offset: 0, 0
+  index: -1
+door_open
+  rotate: true
+  xy: 772, 1452
+  size: 139, 283
+  orig: 139, 283
+  offset: 0, 0
+  index: -1
+door_open_1
+  rotate: false
+  xy: 912, 1156
+  size: 108, 282
+  orig: 108, 282
+  offset: 0, 0
+  index: -1
+extend_1
+  rotate: true
+  xy: 2, 1457
+  size: 372, 768
+  orig: 372, 768
+  offset: 0, 0
+  index: -1
+gold_volt
+  rotate: true
+  xy: 2, 2
+  size: 1453, 725
+  orig: 1456, 727
+  offset: 3, 2
+  index: -1
+vault_door_no_handle
+  rotate: false
+  xy: 729, 2
+  size: 329, 331
+  orig: 334, 331
+  offset: 5, 0
+  index: -1
+vault_handle
+  rotate: true
+  xy: 772, 1593
+  size: 191, 183
+  orig: 191, 183
+  offset: 0, 0
+  index: -1
+vault_hinge_3
+  rotate: true
+  xy: 772, 1786
+  size: 51, 248
+  orig: 51, 248
+  offset: 0, 0
+  index: -1
+
+vault_transition_2.png
+size: 1924, 1929
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+freegame_bg_01
+  rotate: false
+  xy: 2, 967
+  size: 1920, 960
+  orig: 1920, 960
+  offset: 0, 0
+  index: -1
+freegame_bg_02
+  rotate: false
+  xy: 2, 2
+  size: 1920, 963
+  orig: 1920, 963
+  offset: 0, 0
+  index: -1
+
+vault_transition_3.png
+size: 494, 1110
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+fx_flash
+  rotate: false
+  xy: 458, 604
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fx_glitter
+  rotate: false
+  xy: 458, 638
+  size: 30, 30
+  orig: 32, 32
+  offset: 1, 1
+  index: -1
+fx_glow_gold
+  rotate: false
+  xy: 240, 872
+  size: 216, 216
+  orig: 256, 256
+  offset: 20, 20
+  index: -1
+fx_glow_ring
+  rotate: false
+  xy: 2, 494
+  size: 376, 376
+  orig: 384, 384
+  offset: 4, 4
+  index: -1
+fx_glow_white
+  rotate: false
+  xy: 2, 872
+  size: 236, 236
+  orig: 256, 256
+  offset: 10, 10
+  index: -1
+fx_light_rays
+  rotate: false
+  xy: 2, 2
+  size: 490, 490
+  orig: 512, 512
+  offset: 11, 11
+  index: -1
+fx_sparkle
+  rotate: false
+  xy: 380, 494
+  size: 108, 108
+  orig: 128, 128
+  offset: 10, 10
+  index: -1

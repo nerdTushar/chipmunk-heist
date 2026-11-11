@@ -1,0 +1,55 @@
+
+lp1.png
+size: 388, 129
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+button
+  rotate: true
+  xy: 360, 28
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1
+button_add
+  rotate: false
+  xy: 360, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: -1
+button_base
+  rotate: false
+  xy: 360, 48
+  size: 25, 36
+  orig: 25, 36
+  offset: 0, 0
+  index: -1
+flash
+  rotate: true
+  xy: 2, 2
+  size: 125, 124
+  orig: 125, 124
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 360, 86
+  size: 24, 41
+  orig: 24, 41
+  offset: 0, 0
+  index: -1
+torch
+  rotate: true
+  xy: 128, 5
+  size: 122, 115
+  orig: 122, 115
+  offset: 0, 0
+  index: -1
+torch_add
+  rotate: true
+  xy: 245, 7
+  size: 120, 113
+  orig: 120, 113
+  offset: 0, 0
+  index: -1

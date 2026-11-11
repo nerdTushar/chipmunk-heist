@@ -1,0 +1,384 @@
+
+wild.png
+size: 1905, 781
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+bg
+  rotate: false
+  xy: 1154, 534
+  size: 227, 245
+  orig: 227, 245
+  offset: 0, 0
+  index: -1
+box_bottom_shadow
+  rotate: true
+  xy: 1276, 298
+  size: 234, 97
+  orig: 236, 99
+  offset: 1, 1
+  index: -1
+box_bottom_shadow_02
+  rotate: false
+  xy: 397, 27
+  size: 220, 123
+  orig: 220, 123
+  offset: 0, 0
+  index: -1
+close_case_down
+  rotate: true
+  xy: 1154, 298
+  size: 234, 120
+  orig: 236, 122
+  offset: 1, 1
+  index: -1
+d
+  rotate: false
+  xy: 1757, 87
+  size: 56, 67
+  orig: 58, 69
+  offset: 1, 1
+  index: -1
+d_shadow
+  rotate: true
+  xy: 1680, 29
+  size: 61, 75
+  orig: 64, 77
+  offset: 1, 1
+  index: -1
+frame_1
+  rotate: true
+  xy: 397, 10
+  size: 15, 180
+  orig: 15, 181
+  offset: 0, 0
+  index: -1
+frame_2
+  rotate: false
+  xy: 637, 168
+  size: 254, 58
+  orig: 254, 58
+  offset: 0, 0
+  index: -1
+frame_2a
+  rotate: false
+  xy: 893, 168
+  size: 252, 58
+  orig: 252, 58
+  offset: 0, 0
+  index: -1
+gold_biscuit_1
+  rotate: false
+  xy: 1680, 92
+  size: 75, 62
+  orig: 77, 64
+  offset: 1, 1
+  index: -1
+gold_biscuit_1_shadow
+  rotate: false
+  xy: 1380, 248
+  size: 166, 55
+  orig: 166, 55
+  offset: 0, 0
+  index: -1
+gold_biscuit_2
+  rotate: false
+  xy: 1518, 20
+  size: 77, 80
+  orig: 79, 82
+  offset: 1, 1
+  index: -1
+gold_biscuit_3
+  rotate: false
+  xy: 1736, 583
+  size: 167, 94
+  orig: 167, 94
+  offset: 0, 0
+  index: -1
+gold_biscuit_3_
+  rotate: false
+  xy: 1736, 679
+  size: 167, 100
+  orig: 167, 100
+  offset: 0, 0
+  index: -1
+gold_shine/gold_shine_02
+  rotate: false
+  xy: 1131, 138
+  size: 14, 28
+  orig: 305, 210
+  offset: 47, 88
+  index: -1
+gold_shine/gold_shine_03
+  rotate: true
+  xy: 705, 134
+  size: 32, 43
+  orig: 305, 210
+  offset: 42, 84
+  index: -1
+gold_shine/gold_shine_04
+  rotate: false
+  xy: 1757, 28
+  size: 55, 57
+  orig: 305, 210
+  offset: 38, 82
+  index: -1
+gold_shine/gold_shine_05
+  rotate: false
+  xy: 1285, 13
+  size: 90, 110
+  orig: 305, 210
+  offset: 20, 55
+  index: -1
+gold_shine/gold_shine_06
+  rotate: true
+  xy: 1386, 120
+  size: 126, 139
+  orig: 305, 210
+  offset: 16, 42
+  index: -1
+gold_shine/gold_shine_07
+  rotate: false
+  xy: 1683, 156
+  size: 132, 120
+  orig: 305, 210
+  offset: 20, 50
+  index: -1
+gold_shine/gold_shine_08
+  rotate: false
+  xy: 619, 2
+  size: 139, 121
+  orig: 305, 210
+  offset: 31, 63
+  index: -1
+gold_shine/gold_shine_09
+  rotate: true
+  xy: 1701, 278
+  size: 139, 141
+  orig: 305, 210
+  offset: 41, 57
+  index: -1
+gold_shine/gold_shine_10
+  rotate: true
+  xy: 1383, 452
+  size: 150, 175
+  orig: 305, 210
+  offset: 42, 25
+  index: -1
+gold_shine/gold_shine_11
+  rotate: true
+  xy: 1558, 614
+  size: 165, 176
+  orig: 305, 210
+  offset: 46, 18
+  index: -1
+gold_shine/gold_shine_12
+  rotate: false
+  xy: 1383, 604
+  size: 173, 175
+  orig: 305, 210
+  offset: 48, 21
+  index: -1
+gold_shine/gold_shine_13
+  rotate: false
+  xy: 1734, 419
+  size: 165, 162
+  orig: 305, 210
+  offset: 62, 30
+  index: -1
+gold_shine/gold_shine_14
+  rotate: false
+  xy: 1560, 446
+  size: 172, 166
+  orig: 305, 210
+  offset: 67, 28
+  index: -1
+gold_shine/gold_shine_15
+  rotate: false
+  xy: 1375, 305
+  size: 165, 145
+  orig: 305, 210
+  offset: 91, 49
+  index: -1
+gold_shine/gold_shine_16
+  rotate: false
+  xy: 1542, 307
+  size: 157, 137
+  orig: 305, 210
+  offset: 100, 53
+  index: -1
+gold_shine/gold_shine_17
+  rotate: false
+  xy: 247, 2
+  size: 148, 148
+  orig: 305, 210
+  offset: 114, 43
+  index: -1
+gold_shine/gold_shine_18
+  rotate: false
+  xy: 1131, 14
+  size: 152, 109
+  orig: 305, 210
+  offset: 131, 61
+  index: -1
+gold_shine/gold_shine_19
+  rotate: true
+  xy: 1548, 180
+  size: 125, 133
+  orig: 305, 210
+  offset: 163, 27
+  index: -1
+gold_shine/gold_shine_20
+  rotate: true
+  xy: 1377, 9
+  size: 109, 139
+  orig: 305, 210
+  offset: 175, 28
+  index: -1
+gold_shine/gold_shine_21
+  rotate: true
+  xy: 1597, 27
+  size: 72, 81
+  orig: 305, 210
+  offset: 199, 67
+  index: -1
+gold_shine/gold_shine_22
+  rotate: false
+  xy: 1817, 136
+  size: 43, 56
+  orig: 305, 210
+  offset: 220, 72
+  index: -1
+gold_shine/gold_shine_23
+  rotate: false
+  xy: 942, 9
+  size: 30, 45
+  orig: 305, 210
+  offset: 229, 76
+  index: -1
+handle_1
+  rotate: false
+  xy: 637, 125
+  size: 66, 41
+  orig: 66, 41
+  offset: 0, 0
+  index: -1
+handle_2
+  rotate: false
+  xy: 1815, 80
+  size: 52, 54
+  orig: 52, 54
+  offset: 0, 0
+  index: -1
+i
+  rotate: false
+  xy: 1854, 203
+  size: 29, 67
+  orig: 31, 69
+  offset: 1, 1
+  index: -1
+i_shadow
+  rotate: false
+  xy: 1817, 194
+  size: 35, 76
+  orig: 37, 78
+  offset: 1, 1
+  index: -1
+l
+  rotate: false
+  xy: 1844, 272
+  size: 43, 67
+  orig: 45, 69
+  offset: 1, 1
+  index: -1
+l_shadow
+  rotate: false
+  xy: 1844, 341
+  size: 48, 76
+  orig: 51, 78
+  offset: 1, 1
+  index: -1
+layer_115
+  rotate: false
+  xy: 1154, 223
+  size: 224, 73
+  orig: 226, 75
+  offset: 1, 1
+  index: -1
+lock
+  rotate: false
+  xy: 1701, 419
+  size: 28, 25
+  orig: 30, 27
+  offset: 1, 1
+  index: -1
+lock_03
+  rotate: false
+  xy: 760, 56
+  size: 212, 110
+  orig: 212, 110
+  offset: 0, 0
+  index: -1
+lock_1
+  rotate: false
+  xy: 1147, 125
+  size: 237, 96
+  orig: 237, 96
+  offset: 0, 0
+  index: -1
+major_bg_glow
+  rotate: false
+  xy: 2, 152
+  size: 633, 627
+  orig: 704, 704
+  offset: 38, 36
+  index: -1
+nut_cls_cs
+  rotate: false
+  xy: 1814, 56
+  size: 39, 22
+  orig: 41, 24
+  offset: 1, 1
+  index: -1
+particle_burst
+  rotate: false
+  xy: 637, 228
+  size: 515, 551
+  orig: 529, 599
+  offset: 14, 24
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 2
+  size: 243, 148
+  orig: 246, 150
+  offset: 2, 1
+  index: -1
+shadow_2
+  rotate: false
+  xy: 760, 5
+  size: 180, 49
+  orig: 183, 52
+  offset: 2, 2
+  index: -1
+star
+  rotate: true
+  xy: 974, 22
+  size: 144, 155
+  orig: 150, 163
+  offset: 5, 7
+  index: -1
+w
+  rotate: true
+  xy: 1611, 101
+  size: 77, 67
+  orig: 79, 69
+  offset: 1, 1
+  index: -1
+w_shadow
+  rotate: false
+  xy: 1527, 102
+  size: 82, 76
+  orig: 84, 78
+  offset: 1, 1
+  index: -1

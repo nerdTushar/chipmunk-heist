@@ -1,0 +1,76 @@
+
+mp1.png
+size: 647, 232
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+back_glow_1
+  rotate: false
+  xy: 243, 42
+  size: 204, 188
+  orig: 207, 190
+  offset: 2, 1
+  index: -1
+grain_1
+  rotate: false
+  xy: 449, 87
+  size: 131, 143
+  orig: 133, 145
+  offset: 1, 1
+  index: -1
+grain_1_shadow_1
+  rotate: false
+  xy: 582, 106
+  size: 46, 58
+  orig: 48, 62
+  offset: 1, 2
+  index: -1
+grain_1_shadow_2
+  rotate: false
+  xy: 589, 59
+  size: 45, 45
+  orig: 49, 47
+  offset: 2, 1
+  index: -1
+grain_1_shadow_3
+  rotate: false
+  xy: 582, 166
+  size: 63, 64
+  orig: 65, 66
+  offset: 1, 1
+  index: -1
+grain_2
+  rotate: false
+  xy: 449, 2
+  size: 138, 83
+  orig: 140, 85
+  offset: 1, 1
+  index: -1
+grain_2_shadow
+  rotate: false
+  xy: 243, 11
+  size: 63, 29
+  orig: 66, 31
+  offset: 2, 1
+  index: -1
+grain_4_shadow
+  rotate: true
+  xy: 308, 6
+  size: 34, 47
+  orig: 37, 50
+  offset: 2, 1
+  index: -1
+rays
+  rotate: false
+  xy: 2, 3
+  size: 239, 227
+  orig: 288, 291
+  offset: 20, 31
+  index: -1
+sparkle_2
+  rotate: false
+  xy: 357, 10
+  size: 29, 30
+  orig: 36, 35
+  offset: 4, 2
+  index: -1
