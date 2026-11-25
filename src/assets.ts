@@ -35,7 +35,11 @@ export function resolveSources(alias: string): string[] {
       if (!aliases.includes(alias)) continue;
       const sources = ([] as unknown[]).concat(asset.src ?? []);
       return sources
-        .map((source) => (typeof source === "string" ? source : (source as { src?: string }).src))
+        .map((source) =>
+          typeof source === "string"
+            ? source
+            : (source as { src?: string }).src,
+        )
         .filter((source): source is string => typeof source === "string")
         .map((source) => `${BASE_PATH}${source}`);
     }

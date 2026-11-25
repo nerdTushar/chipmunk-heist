@@ -1,10 +1,8 @@
 import SpinningState from "./SpinningState";
 
-/**
- * If no overriding is needed then just use SpinningState class on its node and delete this one.
- */
-export class FreeSpinSpinningState extends SpinningState {
- async enterState(): Promise<void> {
-    await super.enterState();
- }
+/** Free spins reuse the spinning flow; the API step just advances to the next pre-split spin. */
+export default class FreeSpinSpinningState extends SpinningState {
+  constructor(name = "FreeSpinSpinningState") {
+    super(name);
+  }
 }

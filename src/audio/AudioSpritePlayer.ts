@@ -92,13 +92,18 @@ export class AudioSpritePlayer {
     const [definitionUrl] = resolveSources(options.definitionAlias);
     const response = await fetch(definitionUrl);
     if (!response.ok) {
-      throw new Error(`audio sprite "${options.id}": ${definitionUrl} returned ${response.status}.`);
+      throw new Error(
+        `audio sprite "${options.id}": ${definitionUrl} returned ${response.status}.`,
+      );
     }
     const definition = parseSpriteDefinition(options.id, await response.json());
     if (options.expectedCues !== undefined) {
       assertSpriteCues(options.id, definition, options.expectedCues);
     }
-    const buffer = await this.decodeFirstPlayable(options.id, resolveSources(options.audioAlias));
+    const buffer = await this.decodeFirstPlayable(
+      options.id,
+      resolveSources(options.audioAlias),
+    );
     this.sprites.set(options.id, { buffer, definition });
   }
 
@@ -110,7 +115,10 @@ export class AudioSpritePlayer {
     if (this.disposed) return 0;
     const loaded = this.sprites.get(options.sprite);
     if (loaded === undefined) {
-      this.warnOnce(`sprite:${options.sprite}`, `audio sprite "${options.sprite}" is not loaded.`);
+      this.warnOnce(
+        `sprite:${options.sprite}`,
+        `audio sprite "${options.sprite}" is not loaded.`,
+      );
       return 0;
     }
     const tuple = loaded.definition.sprite[options.cue];
@@ -245,7 +253,10 @@ export class AudioSpritePlayer {
   }
 
   /** Safari before 17 cannot decode Ogg Vorbis, hence the walk over the manifest's formats. */
-  private async decodeFirstPlayable(id: string, urls: readonly string[]): Promise<AudioBuffer> {
+  private async decodeFirstPlayable(
+    id: string,
+    urls: readonly string[],
+  ): Promise<AudioBuffer> {
     const failures: string[] = [];
     for (const url of urls) {
       try {
@@ -256,10 +267,14 @@ export class AudioSpritePlayer {
         }
         return await this.context.decodeAudioData(await response.arrayBuffer());
       } catch (error) {
-        failures.push(`${url}: ${error instanceof Error ? error.message : String(error)}`);
+        failures.push(
+          `${url}: ${error instanceof Error ? error.message : String(error)}`,
+        );
       }
     }
-    throw new Error(`audio sprite "${id}": no source could be decoded.\n  ${failures.join("\n  ")}`);
+    throw new Error(
+      `audio sprite "${id}": no source could be decoded.\n  ${failures.join("\n  ")}`,
+    );
   }
 
   private warnOnce(key: string, message: string): void {

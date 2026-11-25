@@ -1,15 +1,26 @@
 import { SplitSpinResponse } from "../utils/FreespinResponseSplitter";
-import Observable from "../utils/StateMachine/Observable";
-import { BuyFeatureId, BuyFeaturePrice, GAME, GameFeatures, get2DPosition, getMatrixTranspose } from "./GameConstants";
-import IUSER from "./IUSER";
-import { StakeJurisdiction, StakePlayResponse, StakeReplayResponse, StakeReplayUrlParams, StakeRoundStateItem, StakeRoundStateType, StakeWarehouseSpinState, StakeWinInfo } from "../Data/StakePlayResponse";
-// Per-spin validation is now coordinated by SlotValidation/SpinValidation.ts,
-// called from SpinningState.afterSpin() once the response has been split into
-// per-freespin chunks. GameState no longer kicks off validators directly.
+import Observable from "../SlotFSM/StateMachine/Observable";
+import { GameFeatures, get2DPosition } from "./GameConfig";
 
-var Instance: GameState = null;
+import {
+  StakeJurisdiction,
+  StakePlayResponse,
+  StakeReplayResponse,
+  StakeReplayUrlParams,
+  StakeRoundStateItem,
+  StakeRoundStateType,
+  StakeWarehouseSpinState,
+  StakeWinInfo,
+} from "./StakePlayResponse";
 
-export default class GameState extends Observable implements IUSER {
+let Instance: GameState = null;
+
+/**
+ * Observable game model (port of Royal Tower GameState). The constructor returns a Proxy so that
+ * every assignment to an existing field notifies observers — FSM transitions watch these fields.
+ * NOTE: every observed field must have an initializer so `property in target` holds.
+ */
+export default class GameState extends Observable {
   /**
    * Observed Properties
    */
@@ -19,27 +30,27 @@ export default class GameState extends Observable implements IUSER {
   isStopRequested: boolean = false;
   musicToggle: boolean = false;
   currentView: number = -1;
-  currentCharacter: number = -1; // can be 0 or 1 in free spin mode
+  currentCharacter: number = -1;
   currentCredit: number = -1;
   featureBought: boolean = false;
   autoSpinCount: number = -1;
-  prevPayline: any;
+  prevPayline: any = null;
   respinOnInit: boolean = false;
   freeSpinPopUP: boolean = false;
   respinCounter: number = 0;
   totalScreen: number = 0;
   CurrentScreen: number = 0;
-  gid: string;
+  gid: string = "";
   isSpaceHold: boolean = false;
   Bonus: any = null;
   ActivatedBonusList: any = null;
   CurrentLevel: number = -1;
-  moneyOnSymbols: any;
+  moneyOnSymbols: any = null;
   totalFreeSpins: number = 0;
   currentFreeSpins: number = 0;
   totalAutoSpins: number = -1;
   WildCounter: number = 0;
-  bonusesToRedeem: any = null
+  bonusesToRedeem: any = null;
   featureId: string = "";
   isBonusRedeemed: boolean = false;
   bonusFeatureAmount: number = 0;
@@ -51,17 +62,12 @@ export default class GameState extends Observable implements IUSER {
   BonusBoostFeatureBought: boolean = false;
   wildId: number = -1;
   freespinCounter: number = 0;
-  isGunsGlazingActivated: boolean = false;
   isWarehouseEnabled: boolean = false;
-  private currentLifes: number = 3;
-  isFlashTeamATurn: boolean = true;
-  flashBeamIndex: number = 0;
   isSuperFeatureBought: boolean = false;
   bonusSpinCount: number = 0;
   isBonusUsed: boolean = false;
   isUILocked = false;
   turboByHold: boolean = false;
-  isBonusChoiceSelected: boolean = true;
   infinitySpinsEnabled: boolean = false;
   currentWarehouseSpinState: StakeWarehouseSpinState = null;
   isIdleInitState: boolean = false;
@@ -77,8 +83,8 @@ export default class GameState extends Observable implements IUSER {
   freeSpinsEnabled: boolean = false;
   bet: number = 0;
 
-  Status: number;
-  Ts: number;
+  Status: number = 0;
+  Ts: number = 0;
 
   IsMaxWin: boolean = false;
 
@@ -87,11 +93,10 @@ export default class GameState extends Observable implements IUSER {
    */
   Player: {
     Balance: number;
-
     Rate: number;
     Currency: string;
     CoinRate: number;
-  };
+  } = null;
 
   Next: {
     Type: number;
@@ -99,26 +104,19 @@ export default class GameState extends Observable implements IUSER {
       Next: number;
       Total: number;
     };
-  };
+  } = null;
 
-  Current: any;
+  Current: any = null;
 
   GameInfo: {
     Line: number;
     BetValue: number[];
     LineBet: number[];
-    BuyFeature: [
-      {
-        RoundType: number;
-        Rate: number;
-        Total: number;
-      }
-    ];
-  };
-
+    BuyFeature: any[];
+  } = null;
 
   currentStakeWinInfo: StakeWinInfo[] = [];
-  gameType: string = "basegame"
+  gameType: string = "basegame";
   isReplay: boolean = false;
   shouldReplay: boolean = false;
 
@@ -127,7 +125,7 @@ export default class GameState extends Observable implements IUSER {
 
   replayParams: StakeReplayUrlParams = null;
 
-  Jurisdiction: StakeJurisdiction;
+  Jurisdiction: StakeJurisdiction = null;
 
   //Stake Response Interface
   stakeResponse: StakePlayResponse | null = null;
@@ -137,24 +135,22 @@ export default class GameState extends Observable implements IUSER {
 
   roundWin: number = 0;
 
-  constructor(userData) {
+  constructor(userData: any) {
     super();
     this.setIUSERData(userData);
     this.setFreeSpinsMode();
     if (!this.Current) this.Current = this.getDefaulCurrent();
-    // this.bet = this.Current.Round.Bet;
-    this.currentCredit = this.GameInfo.LineBet.indexOf(
-      this.bet
-    );
+    this.currentCredit = this.GameInfo.LineBet.indexOf(this.bet);
     this.addObserver(this.onPropertyChanged.bind(this));
     Instance = new Proxy(this, {
       set: (target, property, value) => {
         if (property in target) {
           target[property] = value;
-          this.notifyObservers({ property, value });
+          this.notifyObservers({ property: property as string, value });
           return true;
         }
-        return false;
+        target[property] = value;
+        return true;
       },
     });
     return Instance;
@@ -162,11 +158,6 @@ export default class GameState extends Observable implements IUSER {
 
   protected onPropertyChanged(change: { property: string; value: any }) {
     switch (change.property) {
-      case "bet":
-      // this.Current.Round.Bet = this[change.property];
-      case "autoToggle":
-        // this.totalAutoSpins = this.autoToggle ? this.totalAutoSpins : 0;
-        break;
       case "bonusSpinCount":
         if (this.bonusSpinCount <= 0) {
           this.bonusSpinCount = -1;
@@ -178,15 +169,13 @@ export default class GameState extends Observable implements IUSER {
   }
 
   //Update Observable properties on server data update
-  setIUSERData(userData) {
+  setIUSERData(userData: any) {
     if (userData.GameInfo) this.GameInfo = userData.GameInfo;
     if (userData.Player) this.Player = userData.Player;
     if (userData.Current) this.Current = userData.Current;
     if (userData.Bonus != null) this.Bonus = userData.Bonus;
     if (userData.WildCounter != null) this.WildCounter = userData.WildCounter;
-    //if (userData.Player.Rate) this.Player = userData.Player;
 
-    //TODO:It will also replace other propeties, it should be fixed.
     this.Next = userData.Next;
     this.Status = userData.Status;
     this.Ts = userData.Ts;
@@ -199,7 +188,7 @@ export default class GameState extends Observable implements IUSER {
       if (this.CurrentLevel != userData.Level) {
         this.freeSpinPopUP = false;
       }
-      this.CurrentLevel = userData.Level
+      this.CurrentLevel = userData.Level;
     }
 
     if (userData.Current != null && userData.Current.WildId != null) {
@@ -227,23 +216,13 @@ export default class GameState extends Observable implements IUSER {
     } as unknown as StakePlayResponse;
   }
 
-
-  setISPINData(userData) {
+  setISPINData(userData: any) {
     this.stakeResponse = userData as StakePlayResponse;
-    // Validation is intentionally NOT kicked off here. In freespins a single
-    // API response is split into multiple per-spin chunks; SpinningState.afterSpin
-    // calls SlotValidation/SpinValidation.validateSpin per chunk so each
-    // freespin gets its own combined report instead of one huge bundled one.
   }
 
-
   setBonuses() {
-    if (this.Bonus && GAME.Current.Type == 1) {
-      if (this.Bonus.length <= 0) {
-        this.ActivatedBonusList = [];
-      } else {
-        this.ActivatedBonusList = this.findMatchingFeatures(this.Bonus, GameFeatures);
-      }
+    if (this.Bonus && this.Current?.Type == 1) {
+      this.setBonusFromResponse();
     }
   }
 
@@ -252,42 +231,31 @@ export default class GameState extends Observable implements IUSER {
       if (this.Bonus.length <= 0) {
         this.ActivatedBonusList = [];
       } else {
-        this.ActivatedBonusList = this.findMatchingFeatures(this.Bonus, GameFeatures);
+        this.ActivatedBonusList = this.findMatchingFeatures(
+          this.Bonus,
+          GameFeatures,
+        );
       }
     }
   }
 
-  setLevelCounters() {
-    if (this.freeSpinsEnabled && this.Current.Type != 1) {
-      this.freeSpinLevelCounter = this.Current.Counter;
-      if (this.freeSpinLevelCounter > 14) this.freeSpinLevelCounter = 14;
-    }
-    else {
-      this.baseSpinLevelCounter = this.Current.Counter;
-      if (this.baseSpinLevelCounter > 19) this.baseSpinLevelCounter = 19;
-    }
-  }
-
-  findMatchingFeatures(bonusArray, featuresObject) {
+  findMatchingFeatures(
+    bonusArray: string[],
+    featuresObject: Record<string, number>,
+  ) {
     const resultArray = [];
-
-    bonusArray.forEach(bonusElement => {
-      // Check if the matching key exists in GameFeatures
-      if (featuresObject.hasOwnProperty(bonusElement)) {
-        // Push the corresponding value to the result array
+    bonusArray.forEach((bonusElement) => {
+      if (Object.prototype.hasOwnProperty.call(featuresObject, bonusElement)) {
         resultArray.push(featuresObject[bonusElement]);
       }
     });
-
     return resultArray;
   }
 
   /**
- *
- * @param flag External condition to set UI mode only when needed.
- */
+   * Enables free spin mode on a freeSpinTrigger state, disables it on freeSpinEnd.
+   */
   setFreeSpinsMode() {
-    // Check for free spin trigger state
     const freeSpinTrigger = this.getStakeResponseByType("freeSpinTrigger");
     if (freeSpinTrigger && !this.freeSpinsEnabled) {
       this.freeSpinsEnabled = true;
@@ -297,7 +265,6 @@ export default class GameState extends Observable implements IUSER {
       return;
     }
 
-    // Check for free spin end state
     const freeSpinEnd = this.getStakeResponseByType("freeSpinEnd");
     if (freeSpinEnd && this.freeSpinsEnabled) {
       this.freeSpinsEnabled = false;
@@ -306,34 +273,41 @@ export default class GameState extends Observable implements IUSER {
     }
   }
 
-
   getMoneySymbolMatrix(
     values: number[],
     positions: number[],
     rows: number = 5,
-    cols: number = 3
+    cols: number = 3,
   ): number[][] {
-    const matrix: number[][] = Array.from({ length: rows }, () => Array(cols).fill(0));
+    const matrix: number[][] = Array.from({ length: rows }, () =>
+      Array(cols).fill(0),
+    );
     for (let i = 0; i < values.length; i++) {
-      const pos = positions[i];
-      const cells = get2DPosition(pos, 5);
+      const cells = get2DPosition(positions[i], 5);
       matrix[cells.column][cells.row] = values[i];
     }
-
     return matrix;
   }
 
-
   getCurrentSplitResponse(): SplitSpinResponse | null {
-    if (this.splitSpinResponses.length > 0 && this.currentSplitSpinIndex < this.splitSpinResponses.length) {
+    if (
+      this.splitSpinResponses.length > 0 &&
+      this.currentSplitSpinIndex < this.splitSpinResponses.length
+    ) {
       return this.splitSpinResponses[this.currentSplitSpinIndex];
     }
     return null;
   }
 
-  getStakeStateByIndex(index: number): StakeRoundStateItem | null {
+  private getStateList(): StakeRoundStateItem[] | undefined {
     const splitResponse = this.getCurrentSplitResponse();
-    const stateList = splitResponse ? splitResponse.round.state : this.stakeResponse?.round?.state;
+    return splitResponse
+      ? splitResponse.round.state
+      : this.stakeResponse?.round?.state;
+  }
+
+  getStakeStateByIndex(index: number): StakeRoundStateItem | null {
+    const stateList = this.getStateList();
     if (!stateList || index < 0 || index >= stateList.length) {
       return null;
     }
@@ -346,10 +320,9 @@ export default class GameState extends Observable implements IUSER {
 
   getStakeResponseByType<TType extends StakeRoundStateItem["type"]>(
     type: TType,
-    index?: number
+    index?: number,
   ): Extract<StakeRoundStateItem, { type: TType }> | null {
-    const splitResponse = this.getCurrentSplitResponse();
-    const stateList = splitResponse ? splitResponse.round.state : this.stakeResponse?.round?.state;
+    const stateList = this.getStateList();
     if (!stateList || stateList.length === 0) {
       return null;
     }
@@ -367,8 +340,7 @@ export default class GameState extends Observable implements IUSER {
   }
 
   hasStakeState(type: StakeRoundStateItem["type"]): boolean {
-    const splitResponse = this.getCurrentSplitResponse();
-    const stateList = splitResponse ? splitResponse.round.state : this.stakeResponse?.round?.state;
+    const stateList = this.getStateList();
     if (!stateList || stateList.length === 0) {
       return false;
     }
@@ -376,13 +348,12 @@ export default class GameState extends Observable implements IUSER {
   }
 
   getCurrentStakeResponseByType<TType extends StakeRoundStateItem["type"]>(
-    type: TType
+    type: TType,
   ): Extract<StakeRoundStateItem, { type: TType }> | null {
     const stateItem = this.getStakeStateByIndex(this.CurrentScreen);
     if (!stateItem || stateItem.type !== type) {
       return null;
     }
-
     return stateItem as Extract<StakeRoundStateItem, { type: TType }>;
   }
 
@@ -399,46 +370,17 @@ export default class GameState extends Observable implements IUSER {
     return {
       Type: 1,
       TotalWin: 0,
-      Result: {
-        R: "104,103,203|204,102,204|203,2,102|203,102,104|104,102,202",
-      },
+      RoundWin: 0,
       Round: {
         RoundType: 1,
         Bet: this.GameInfo.LineBet[6] * this.GameInfo.Line,
         ActualBet: 1,
         BetValue: 1,
-        Line: 60,
+        Line: 25,
         LineBet: this.GameInfo.LineBet[6],
         Payout: 0,
       },
     };
-  }
-
-  public addLife(life: number) {
-    this.currentLifes += life;
-  }
-
-  public deductLife(): boolean {
-    if (this.currentLifes > 0) {
-      this.currentLifes -= 1;
-      return true;
-    }
-
-    return false;
-  }
-
-  public resetLifes() {
-    this.currentLifes = 3;
-  }
-
-  public setLifes(lifes: number) {
-    if (lifes < 0 || lifes > 3) return;
-
-    this.currentLifes = lifes;
-  }
-
-  public getLifes(): number {
-    return this.currentLifes;
   }
 }
 

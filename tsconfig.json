@@ -1,6 +1,16 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "types": ["vite/client"],
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "strict": false
   },
+  "include": ["src"],
   "exclude": ["node_modules", "dist", "scripts"]
 }

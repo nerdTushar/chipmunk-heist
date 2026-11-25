@@ -1,55 +1,47 @@
+import SMState from "../StateMachine/SMState";
 import {
-  API,
-  APIs,
-  Events,
-  GAME,
   GameEvents,
-  GameView,
-  PopUps,
-  PopUpType,
+  GAME,
+  REELM,
+  Events,
   QUEUE,
   QUEUE_PRIORITY,
   QUEUEACTIONEND,
-  REELM,
-  Sounds,
 } from "../../Data/GameConstants";
-import SMState from "../../utils/StateMachine/SMState";
 import { StakeRoundStateType } from "../../Data/StakePlayResponse";
 
-export class RespinSpinningState extends SMState {
-  newReel: any = null;
+/**
+ * Port of Royal Tower RespinSpinningState: advances to the next stake state of the current spin,
+ * plays the cascade for a `tumbleBoard`, then hands back to SpinEnd / FreeSpinEnd.
+ */
+export default class RespinSpinningState extends SMState {
+  constructor(name = "RespinSpinningState") {
+    super(name);
+  }
+
   enterState(): void {
     super.enterState();
-    this.newReel = null;
     this.respin();
   }
 
-
-
   createNewReel() {
-    console.log("creating new reel for respin ", GAME.getCurrentStakeState());
     if (GAME.getCurrentStakeState() == StakeRoundStateType.TUMBLE_BOARD) {
-      const explodingSymbols = GAME.getCurrentStakeResponseByType("tumbleBoard").explodingSymbols;
-      const newSymbols = GAME.getCurrentStakeResponseByType("tumbleBoard").newSymbols;
-      console.log("explodingSymbols ", explodingSymbols, " newSymbols ", newSymbols);
-      REELM.deleteCascade(explodingSymbols, newSymbols)
+      const tumble = GAME.getCurrentStakeResponseByType("tumbleBoard");
+      REELM.deleteCascade(tumble.explodingSymbols, tumble.newSymbols);
     }
     this.startExiting();
   }
 
-  async respin() {
+  respin() {
     try {
       GAME.CurrentScreen++;
       if (GAME.getCurrentStakeState() == StakeRoundStateType.TUMBLE_BOARD) {
-        console.log("Requesting respin API with current screen ", GAME.getCurrentStakeState());
         REELM.showFloatingTumbleWinnings();
       }
       this.createNewReel();
       GAME.respinCounter++;
-      // GameView.setIndicatorBalls();
     } catch (err) {
       console.error("Error during respin:", err);
-      // PopUps.show(PopUpType.NetworkErrorPopUp, GAME);
     }
   }
 
@@ -62,7 +54,7 @@ export class RespinSpinningState extends SMState {
         } else {
           Events.emit(GameEvents.ON_RESPIN_END, true);
         }
-        Events.emit(QUEUEACTIONEND);
+        Events.emit(QUEUEACTIONEND, QUEUE_PRIORITY.STATECHANGE);
       },
       priority: QUEUE_PRIORITY.STATECHANGE,
     });

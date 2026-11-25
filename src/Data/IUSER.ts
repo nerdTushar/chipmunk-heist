@@ -48,8 +48,8 @@ export default interface IUSER {
         RoundType: number;
         Rate: number;
         Total: number;
-      }
-    ]
+      },
+    ];
   };
 
   Status: number;

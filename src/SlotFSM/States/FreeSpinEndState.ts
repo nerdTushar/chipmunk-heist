@@ -1,31 +1,32 @@
+import SpinEndState from "./SpinEndState";
 import {
-  QUEUE_PRIORITY,
-  QUEUE,
+  GameEvents,
   PopUps,
+  GAME,
+  GameView,
   PopUpType,
   Events,
+  QUEUE,
+  QUEUE_PRIORITY,
   QUEUEACTIONEND,
-  GAME,
-  GameEvents,
-  REELM,
-  BottomUI,
-  BuyFeatureId,
-  GameView,
-  BuyFeaturePrice,
+  ScreenSwitchTransition,
 } from "../../Data/GameConstants";
-import SpinEndState from "./SpinEndState";
-import { ScreenSwitchTransition } from "../../utils/ScreenSwitchTransition";
 
-export class FreeSpinEndState extends SpinEndState {
+/** Port of Royal Tower FreeSpinEndState: SpinEnd plus the free spin end flow (FreeGameWin + transition). */
+export default class FreeSpinEndState extends SpinEndState {
+  constructor(name = "FreeSpinEndState") {
+    super(name);
+  }
+
   checkFreeSpinEnd() {
-    GAME.setFreeSpinsMode(); //StartExiting will also call it again, so don't rely on property change event.
+    GAME.setFreeSpinsMode(); // startExiting relies on the value, not on the property change event.
     if (!GAME.freeSpinsEnabled) {
       setTimeout(() => {
         GAME.freeSpinLevelCounter = 0;
         GAME.baseSpinLevelCounter = 0;
         PopUps.show(PopUpType.FreeGameWin);
         this.startFreespinEndTransition();
-      }, 1000)
+      }, 1000);
     } else {
       Events.emit(QUEUEACTIONEND, QUEUE_PRIORITY.FREESPINEND);
     }
@@ -35,9 +36,7 @@ export class FreeSpinEndState extends SpinEndState {
     super.setWinnings();
     if (GAME.CurrentScreen >= GAME.totalScreen - 1) {
       QUEUE.enQueue({
-        execute: () => {
-          this.checkFreeSpinEnd();
-        },
+        execute: () => this.checkFreeSpinEnd(),
         priority: QUEUE_PRIORITY.FREESPINEND,
       });
     }
@@ -50,11 +49,11 @@ export class FreeSpinEndState extends SpinEndState {
         ScreenSwitchTransition.switchToScreen(() => {
           GameView.toggleFreeSpinsUI(false);
           GAME.isWarehouseEnabled = false;
-        })
-
-        setTimeout(() => {
-          Events.emit(QUEUEACTIONEND);
-        }, 3500);
+        });
+        setTimeout(
+          () => Events.emit(QUEUEACTIONEND, QUEUE_PRIORITY.TRANSITION),
+          3500,
+        );
       },
       priority: QUEUE_PRIORITY.TRANSITION,
     });
@@ -66,7 +65,7 @@ export class FreeSpinEndState extends SpinEndState {
         execute: () => {
           this.enableTransitions(true);
           Events.emit(GameEvents.ON_RESPIN_FREESPIN_START, true);
-          Events.emit(QUEUEACTIONEND);
+          Events.emit(QUEUEACTIONEND, QUEUE_PRIORITY.STATECHANGE);
         },
         priority: QUEUE_PRIORITY.STATECHANGE,
       });

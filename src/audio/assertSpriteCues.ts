@@ -7,10 +7,16 @@ export interface SpriteDefinition {
 export class MissingSpriteCuesError extends Error {
   readonly missing: readonly string[];
 
-  constructor(spriteId: string, missing: readonly string[], available: readonly string[]) {
+  constructor(
+    spriteId: string,
+    missing: readonly string[],
+    available: readonly string[],
+  ) {
     const lines = missing.map((cue) => {
       const near = nearest(cue, available);
-      return near === undefined ? `  "${cue}"` : `  "${cue}" (did you mean "${near}"?)`;
+      return near === undefined
+        ? `  "${cue}"`
+        : `  "${cue}" (did you mean "${near}"?)`;
     });
     super(
       `audio sprite "${spriteId}" is missing ${missing.length} cue(s) the game plays:\n` +
@@ -23,10 +29,15 @@ export class MissingSpriteCuesError extends Error {
   }
 }
 
-export function parseSpriteDefinition(spriteId: string, raw: unknown): SpriteDefinition {
+export function parseSpriteDefinition(
+  spriteId: string,
+  raw: unknown,
+): SpriteDefinition {
   const sprite = (raw as { sprite?: unknown } | null)?.sprite;
   if (typeof sprite !== "object" || sprite === null) {
-    throw new Error(`audio sprite "${spriteId}": the cue map has no "sprite" object.`);
+    throw new Error(
+      `audio sprite "${spriteId}": the cue map has no "sprite" object.`,
+    );
   }
   for (const [cue, tuple] of Object.entries(sprite)) {
     const valid =
@@ -37,7 +48,9 @@ export function parseSpriteDefinition(spriteId: string, raw: unknown): SpriteDef
       tuple[0] >= 0 &&
       tuple[1] > 0;
     if (!valid) {
-      throw new Error(`audio sprite "${spriteId}": cue "${cue}" is not [startMs, durationMs, loop?].`);
+      throw new Error(
+        `audio sprite "${spriteId}": cue "${cue}" is not [startMs, durationMs, loop?].`,
+      );
     }
   }
   return { sprite: sprite as Record<string, SpriteCueTuple> };
@@ -54,10 +67,14 @@ export function assertSpriteCues(
 ): void {
   const available = Object.keys(definition.sprite);
   const missing = expectedCues.filter((cue) => !(cue in definition.sprite));
-  if (missing.length > 0) throw new MissingSpriteCuesError(spriteId, missing, available);
+  if (missing.length > 0)
+    throw new MissingSpriteCuesError(spriteId, missing, available);
 }
 
-function nearest(cue: string, available: readonly string[]): string | undefined {
+function nearest(
+  cue: string,
+  available: readonly string[],
+): string | undefined {
   let best: string | undefined;
   let bestDistance = Math.max(3, Math.floor(cue.length / 3)) + 1;
   for (const candidate of available) {

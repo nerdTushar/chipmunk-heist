@@ -1,54 +1,59 @@
 /**
- * 1. Manages all states of the machine
+ * Manages all states of the machine
  * - Initializing of state machine
  * - provides methods to add and remove states and transitions
  * - Handles state changes
+ *
+ * Unlike the Cocos component, nothing ticks this automatically: the owner calls `update(dt)` from the
+ * Pixi ticker (GameScreen does).
  */
 import SMState from "./SMState";
 import Observable from "./Observable";
 import EventEmitter from "./EventEmitter";
 import { GameEvents } from "./GameEvents";
 
-export default abstract class StateMachine {
+export default class StateMachine {
   public states: SMState[] = [];
-
   public initialState: SMState;
-
   public currentState: SMState;
-
   public gameState: Observable;
-
   public emitter: EventEmitter;
-
   public counter: number = 0;
+  private initialised = false;
+
+  addState(state: SMState): this {
+    if (this.states.indexOf(state) == -1) this.states.push(state);
+    return this;
+  }
 
   initSM(gameState: Observable, emitter: EventEmitter, state: SMState = null) {
     this.gameState = gameState;
     this.emitter = emitter;
     this.counter = 0;
-    if (state) {
-      this.initialState = state;
-    }
+    if (state) this.initialState = state;
 
     if (this.states.indexOf(this.initialState) == -1) {
-      // console.warn("Add the initial state", this.initialState);
+      console.warn(
+        "[StateMachine] initial state is not registered",
+        this.initialState,
+      );
       return;
     }
 
-    //Doing it here instead of onLoad
-    this.states.forEach((element) => {
-      element.init(this);
-    });
+    if (!this.initialised) {
+      this.states.forEach((element) => element.init(this));
+      this.initialised = true;
+    }
     this.changeState(this.initialState);
   }
 
-  public isFirstState(state): boolean {
+  public isFirstState(state: SMState): boolean {
     return state == this.initialState && this.counter == 0;
   }
 
-  changeState(state) {
+  changeState(state: SMState) {
     if (this.states.indexOf(state) == -1) {
-      // console.warn("Add the state", state);
+      console.warn("[StateMachine] unknown state", state);
       return;
     }
 
@@ -63,15 +68,20 @@ export default abstract class StateMachine {
     this.emitter.emit(GameEvents.STATE_ENTER, this.currentState.name);
   }
 
-  addGameEventListener(callBack: Function, THIS) {
-    Object.keys(GameEvents).forEach((key, i) => {
-      this.emitter.on(key, callBack, THIS);
-    });
+  addGameEventListener(callBack: Function, host: any) {
+    Object.keys(GameEvents).forEach((key) =>
+      this.emitter.on(key, callBack, host),
+    );
   }
 
-  removeGameEventListener(callBack: Function, THIS) {
-    Object.keys(GameEvents).forEach((key, i) => {
-      this.emitter.removeListener(key, callBack, THIS);
-    });
+  removeGameEventListener(callBack: Function, host: any) {
+    Object.keys(GameEvents).forEach((key) =>
+      this.emitter.removeListener(key, callBack, host),
+    );
+  }
+
+  /** dt in seconds. */
+  update(dt: number) {
+    if (this.currentState?.enabled) this.currentState.update(dt);
   }
 }

@@ -1,80 +1,101 @@
 import SMState from "./SMState";
-import Observable from "./Observable";
+import Observable, { PropertyChange } from "./Observable";
 import EventEmitter from "./EventEmitter";
 import { GameEvents } from "./GameEvents";
 
-export default abstract class Transition {
+export interface TransitionConfig {
+  name: string;
+  /** Target state. */
+  next: SMState;
+  /** Seconds in the current state after which the transition fires; -1 disables it. */
+  timeToChange?: number;
+  /** GameState properties compared as strings with `watchValues` at the same index. */
+  watchProperties?: string[];
+  watchValues?: string[];
+  /** GameEvents compared as `data?.toString()` with `eventsValues` at the same index. */
+  events?: string[];
+  eventsValues?: string[];
+}
+
+/**
+ * Port of the Cocos `Transition` component. In the scene each transition was a node whose inspector
+ * fields held these values; here they come from `TransitionConfig` (see SlotFSM/SlotMachine.ts).
+ */
+export default class Transition {
+  readonly name: string;
   currentState: SMState;
-
   nextState: SMState;
-
-  nextStateNode: Node;
-
   timeToChange: number = -1;
-
   watchProperties: string[] = [];
-
   watchValues: string[] = [];
-
   events: string[] = [];
- 
   eventsValues: string[] = [];
+  enabled = false;
 
   public gameState: Observable;
   public emitter: EventEmitter;
+  private listening = false;
 
-  init(s1) {
-    this.enabled = false; //All Transitions are disabled by default
+  constructor(config: TransitionConfig) {
+    this.name = config.name;
+    this.nextState = config.next;
+    this.timeToChange = config.timeToChange ?? -1;
+    this.watchProperties = config.watchProperties ?? [];
+    this.watchValues = config.watchValues ?? [];
+    this.events = config.events ?? [];
+    this.eventsValues = config.eventsValues ?? [];
+  }
+
+  init(s1: SMState) {
+    this.enabled = false; // All transitions are disabled by default
     this.currentState = s1;
-    this.nextState = this.nextStateNode.getComponent("SMState") as SMState;
 
-    //Observing all gamestate properties (UI and GameData related)
     if (this.currentState.gameState) {
       this.gameState = this.currentState.gameState;
       this.gameState.addObserver(this.onPropertyChanged.bind(this));
     }
-
     this.emitter = this.currentState.emitter;
-    //EXP: EXPERIMENTAL
   }
 
   public handleEvents(flag: boolean) {
-    Object.keys(GameEvents).forEach((key, i) => {
-      if (flag) {
-        this.emitter.on(key, this.onGameEvent, this);
-      } else {
-        this.emitter.removeListener(key, this.onGameEvent, this);
-      }
+    if (flag === this.listening) return;
+    this.listening = flag;
+    Object.keys(GameEvents).forEach((key) => {
+      if (flag) this.emitter.on(key, this.onGameEvent, this);
+      else this.emitter.removeListener(key, this.onGameEvent, this);
     });
   }
 
   public setEnabled(flag: boolean): void {
     this.enabled = flag;
     this.handleEvents(flag);
-    if (flag)
-      this.watchProperties.forEach((element, i) => {
-        this.enableWatchProperties(element, i);
-      });
+    if (flag) {
+      this.watchProperties.forEach((element, i) =>
+        this.enableWatchProperties(element, i),
+      );
+    }
   }
 
   protected onGameEvent(eventName: string, data: any) {
-    // debugger;
     if (!this.enabled) return;
-    let idx = this.events.indexOf(eventName);
+    const idx = this.events.indexOf(eventName);
     if (idx != -1 && data?.toString() == this.eventsValues[idx]) {
       this.triggerTransition();
     }
   }
 
-  protected onPropertyChanged(change: { property: string; value: any }) {
+  protected onPropertyChanged(change: PropertyChange) {
     if (!this.enabled) return;
-    let idx = this.watchProperties.indexOf(change.property);
+    const idx = this.watchProperties.indexOf(change.property);
+    if (idx == -1) return;
     this.enableWatchProperties(change.property, idx);
   }
 
   protected enableWatchProperties(property: string, idx: number) {
-    if(this.gameState[property]==undefined)return
-    if (this.gameState[property].toString() == this.watchValues[idx]) {
+    if (!this.enabled) return;
+    const value = this.gameState?.[property];
+    if (value == undefined) return;
+    if (value.toString() == this.watchValues[idx]) {
       this.triggerTransition();
     }
   }
@@ -84,10 +105,8 @@ export default abstract class Transition {
     this.currentState.triggerTransition(this.nextState);
   }
 
-  update(dt) {
-    //In builds it is undefined
-    if (!this.currentState) return;
-    if (!this.enabled) return;
+  update(_dt: number) {
+    if (!this.currentState || !this.enabled) return;
     if (
       this.timeToChange > 0 &&
       this.currentState.stateTime >= this.timeToChange

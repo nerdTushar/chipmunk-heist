@@ -1,19 +1,6 @@
+export type PropertyChange = { property: string; value: any };
+
 export default class Observable {
-
-  
-  // constructor() {
-  //   return new Proxy(this, {
-  //     set: (target, property, value) => {
-  //       if (property in target) {
-  //         target[property] = value;
-  //         this.notifyObservers({ property, value });
-  //         return true;
-  //       }
-  //       return false;
-  //     },
-  //   });
-  // }
-
   private observers: Function[] = [];
 
   addObserver(observer: Function) {
@@ -27,7 +14,7 @@ export default class Observable {
     }
   }
 
-  notifyObservers(data: any) {
-    this.observers.forEach((observer) => observer(data));
+  notifyObservers(data: PropertyChange) {
+    this.observers.slice().forEach((observer) => observer(data));
   }
 }
